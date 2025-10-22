@@ -104,7 +104,7 @@ const translations = {
         descOptiRuta: "Mobile application for managing and optimizing public transportation routes, designed specifically for students, with an intuitive interface and real-time functionality.",
         descCisco: "Simulation application in Cisco Packet Tracer that represents the network infrastructure of the Polytechnic University of Sinaloa.",
         descWeb: "Design of a course plan for Web Development, covering the fundamentals and best practices for creating attractive and functional websites.",
-        
+
         certIT: "IT Essentials",
         emisorIT: "Issuer: <strong>Cisco</strong>",
         fechaIT: "Date: <strong>2024</strong>",
@@ -163,7 +163,7 @@ const translations = {
         descOptiRuta: "Application mobile de gestion et d'optimisation des itinéraires de transports en commun, conçue spécifiquement pour les étudiants, avec une interface intuitive et des fonctionnalités en temps réel.",
         descCisco: "Application de simulation dans Cisco Packet Tracer qui représente l'infrastructure réseau de l'Université Polytechnique de Sinaloa.",
         descWeb: "Conception d'un plan de cours pour le développement Web, couvrant les fondamentaux et les meilleures pratiques pour créer des sites Web attrayants et fonctionnels.",
-        
+
         certIT: "IT Essentials",
         emisorIT: "Émetteur: <strong>Cisco</strong>",
         fechaIT: "Date: <strong>2024</strong>",
@@ -233,4 +233,37 @@ function setLanguage(lang) {
 
 document.addEventListener('DOMContentLoaded', () => {
     setLanguage('ES');
+});
+
+function toggleMenu() {
+    const nav = document.getElementById('mainNav');
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    nav.classList.toggle('active');
+    menuBtn.classList.toggle('active');
+}
+
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    const nav = document.getElementById('mainNav');
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    if (nav.classList.contains('active')) {
+        nav.classList.remove('active');
+        menuBtn.classList.remove('active');
+    }
+}
+
+document.addEventListener('click', function (event) {
+    const nav = document.getElementById('mainNav');
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const header = document.querySelector('header');
+
+    if (!header.contains(event.target) && nav.classList.contains('active')) {
+        nav.classList.remove('active');
+        menuBtn.classList.remove('active');
+    }
 });
