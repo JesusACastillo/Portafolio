@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jesús Antonio Castillo - Portafolio</title>
+    <script src="./js/script.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=Inter:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Golos Text', -apple-system, Roboto, Helvetica, sans-serif;
+            background-color: #fff;
+            color: #000;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            z-index: 50;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            height: 70px;
+        }
+
+        .header-container {
+            max-width: 1920px;
+            margin: 0 auto;
+            padding: 0 16px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .mobile-menu-btn {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background-color: #23468C;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        nav {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            flex-direction: column;
+            padding: 20px;
+            gap: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav.active {
+            display: flex;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: #23468C;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 16px;
+            padding: 12px;
+            text-align: left;
+            transition: color 0.3s ease;
+        }
+
+        nav button:hover {
+            color: #2563EB;
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            padding: 6px 10px;
+            font-size: 14px;
+        }
+
+        .lang-btn.active {
+            background-color: #4A86E8;
+            color: white;
+            border-radius: 4px;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: 70px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background-image: url(images/fondo.png);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            max-width: 1560px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+            z-index: 10;
+            color: white;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.5rem, 6vw, 64px);
+            font-weight: 400;
+            color: #BFDBFE;
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-size: clamp(1.8rem, 8vw, 64px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-contact-label {
+            font-size: clamp(1.2rem, 4vw, 40px);
+            font-weight: 500;
+            color: #DBEAFE;
+            margin-bottom: 12px;
+        }
+
+        .hero-tagline {
+            font-size: clamp(0.9rem, 2.5vw, 24px);
+            font-weight: 500;
+            color: #75B3DE;
+            margin-bottom: 24px;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 3vw, 32px);
+            font-weight: 500;
+            max-width: 1560px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+            color: white;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            width: 100%;
+            max-width: 300px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1rem, 2vw, 24px);
+            padding: 16px 32px;
+            border-radius: 52px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #2A67C5;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #1e4f99;
+        }
+
+        .btn-secondary {
+            border: 3px solid white;
+            color: white;
+            background-color: transparent;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .knowledge-section {
+            background-color: #F7F8F9;
+            padding: 60px 20px;
+        }
+
+        .section-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 5vw, 48px);
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 12px;
+            color: #000;
+        }
+
+        .section-subtitle {
+            font-size: clamp(0.9rem, 2vw, 20px);
+            color: #666;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            align-items: center;
+            margin-bottom: 48px;
+        }
+
+        .knowledge-photo {
+            text-align: center;
+        }
+
+        .knowledge-photo img {
+            max-width: 100%;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .knowledge-content {
+            padding: 0;
+        }
+
+        .knowledge-text {
+            font-size: clamp(1rem, 2vw, 24px);
+            color: #000;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .skills-title {
+            font-size: clamp(1.2rem, 2.5vw, 24px);
+            font-weight: 500;
+            color: #000;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .skill-name {
+            font-size: clamp(1rem, 2vw, 24px);
+            color: #374151;
+        }
+
+        .skill-percentage {
+            font-size: 12px;
+            color: #7E7E7E;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 12px;
+            background-color: #E5E7EB;
+            border-radius: 7px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background-color: #2563EB;
+            border-radius: 7px;
+            transition: width 0.5s ease;
+        }
+
+        .education-section {
+            background-color: white;
+            padding: 60px 20px;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .education-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+        }
+
+        .education-title {
+            font-size: clamp(1.5rem, 3vw, 36px);
+            font-weight: 500;
+            color: #000;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .card-header {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .card-logo {
+            width: 50px;
+            height: 60px;
+            flex-shrink: 0;
+        }
+
+        .card-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .card-content h3 {
+            font-size: clamp(1rem, 2vw, 24px);
+            font-weight: 700;
+            color: #23468C;
+            margin-bottom: 8px;
+        }
+
+        .card-content p {
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+
+        .card-position {
+            color: #4A86E8;
+        }
+
+        .card-date {
+            color: #7E7E7E;
+        }
+
+        .card-description {
+            color: #2F2F2F;
+        }
+
+        .projects-section {
+            background-color: #F7F8F9;
+            padding: 60px 20px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: clamp(1.2rem, 2vw, 24px);
+            font-weight: 500;
+            color: #23468C;
+            margin-bottom: 12px;
+        }
+
+        .project-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+
+        .tech-label {
+            color: #2F2F2F;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background-color: #DBEAFE;
+            color: #1E4F99;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-project {
+            flex: 1;
+            background-color: #2563EB;
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.3s ease;
+            font-family: inherit;
+            text-decoration: none;
+        }
+
+        .btn-project:hover {
+            background-color: #1e4f99;
+        }
+
+        .btn-project svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .div-icon {
+            width: 48px;
+            height: 48px;
+            border: 1px solid #A8A8A8;
+            border-radius: 8px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .div-icon img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .certificates-section {
+            background-color: white;
+            padding: 60px 20px;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .certificate-card {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            text-align: center;
+        }
+
+        .certificate-image {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            object-fit: contain;
+        }
+
+        .certificate-title {
+            font-size: clamp(1rem, 2vw, 24px);
+            font-weight: 500;
+            color: #23468C;
+            margin-bottom: 16px;
+        }
+
+        .certificate-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .certificate-issuer,
+        .certificate-date {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .certificate-issuer img,
+        .certificate-date img {
+            width: 24px;
+            height: 24px;
+        }
+
+        footer {
+            background: linear-gradient(283deg, rgba(22, 47, 98, 0) -43.55%, #23468C 24.4%), #D9D9D9;
+            color: white;
+            padding: 48px 20px;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-column h3 {
+            font-size: clamp(1.5rem, 3vw, 40px);
+            font-weight: 500;
+            color: #4A86E8;
+            margin-bottom: 12px;
+        }
+
+        .footer-column p {
+            font-size: clamp(0.9rem, 2vw, 20px);
+            font-weight: 500;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: clamp(0.9rem, 2vw, 20px);
+            font-weight: 500;
+            cursor: pointer;
+            font-family: inherit;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links button:hover {
+            color: #4A86E8;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .contact-item img {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .contact-text {
+            font-size: clamp(0.9rem, 2vw, 20px);
+            font-weight: 500;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            justify-content: center;
+        }
+
+        .social-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #27426B;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            background-color: #4A86E8;
+        }
+
+        .social-btn img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-divider {
+            border-top: 1px solid #3D6CB3;
+            padding-top: 24px;
+            text-align: center;
+            font-size: clamp(0.8rem, 2vw, 20px);
+            font-weight: 500;
+        }
+
+        @media (min-width: 768px) {
+            header {
+                height: 80px;
+            }
+
+            .header-container {
+                padding: 0 32px;
+            }
+
+            .logo {
+                width: 65px;
+                height: 65px;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+            }
+
+            nav {
+                display: flex !important;
+                position: static;
+                flex-direction: row;
+                padding: 0;
+                gap: 24px;
+                box-shadow: none;
+            }
+
+            nav button {
+                padding: 0;
+                font-size: 15px;
+            }
+
+            .language-selector {
+                gap: 10px;
+                font-size: 15px;
+            }
+
+            .hero {
+                padding-top: 80px;
+            }
+
+            .hero-buttons {
+                flex-direction: row;
+                gap: 20px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: auto;
+                min-width: 200px;
+            }
+
+            .knowledge-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+
+            .skills-title {
+                text-align: left;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .certificates-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .social-links {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            header {
+                height: 87px;
+            }
+
+            .logo {
+                width: 81px;
+                height: 79px;
+            }
+
+            nav {
+                gap: 32px;
+            }
+
+            .hero-content {
+                padding: 80px 20px;
+            }
+
+            .knowledge-section,
+            .education-section,
+            .projects-section,
+            .certificates-section {
+                padding: 80px 20px;
+            }
+
+            .knowledge-photo img {
+                max-width: 499px;
+            }
+
+            .certificates-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .certificate-card {
+                max-width: 280px;
+                margin: 0 auto;
+            }
+
+            .certificate-image {
+                width: 166px;
+                height: 166px;
+            }
+
+            footer {
+                padding: 64px 20px;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .project-image {
+                height: 164px;
+            }
+
+            .card-logo {
+                width: 59px;
+                height: 73px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="icons/logo.png" alt="Logo">
+            </div>
+
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav id="mainNav">
+                <button onclick="scrollToSection('inicio')">Inicio</button>
+                <button onclick="scrollToSection('acerca')">Acerca de</button>
+                <button onclick="scrollToSection('proyectos')">Proyectos</button>
+                <button onclick="scrollToSection('certificados')">Certificados</button>
+                <button onclick="scrollToSection('contacto')">Contacto</button>
+            </nav>
+
+            <div class="language-selector">
+                <button class="lang-btn active" onclick="setLanguage('ES')">ES</button>
+                <button class="lang-btn" onclick="setLanguage('EN')">EN</button>
+                <button class="lang-btn" onclick="setLanguage('FR')">FR</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h2 class="hero-subtitle" data-text-id="hola">Hola, soy</h2>
+            <h1 class="hero-title">Jesús Antonio Castillo</h1>
+            <p class="hero-contact-label" data-text-id="contactoLabel">Contacto</p>
+            <p class="hero-tagline" data-text-id="hablemosProyecto">Hablemos sobre tu próximo proyecto</p>
+            <p class="hero-description" data-text-id="descriptionHero">
+                Soy un ingeniero en tecnologías de la información graduado de la Universidad Politécnica de Sinaloa,
+                con experiencia en desarrollo de software, análisis de sistemas y gestión de proyectos tecnológicos.
+            </p>
+            <div class="hero-buttons">
+                <a href="./downloads/CV.pdf" download class="btn-primary" data-text-id="descargarCV">Descargar CV</a>
+                <button class="btn-secondary" data-text-id="contactame"
+                    onclick="scrollToSection('contacto')">Contáctame</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="knowledge-section" id="acerca">
+        <div class="section-container">
+            <h2 class="section-title">Conocimientos</h2>
+            <p class="section-subtitle">Dominio y experiencia en el desarrollo de software.</p>
+            <div class="knowledge-grid">
+                <div class="knowledge-photo">
+                    <figure>
+                        <picture>
+                            <source media="(max-width: 768px)" srcset="images/fotoformal_telefono.png">
+                            <source media="(max-width: 1200px)" srcset="images/fotoformal_tablet.png">
+                            <img src="images/fotoformal_escritorio.png" alt="Jesús Antonio Hernández Castillo">
+                        </picture>
+                    </figure>
+                </div>
+                <div class="knowledge-content">
+                    <p class="knowledge-text" data-text-id="descriptionHeroAbout">
+                        Soy un ingeniero en tecnologías de la información graduado de la Universidad Politécnica de
+                        Sinaloa,
+                        con experiencia en desarrollo de software, análisis de sistemas y gestión de proyectos
+                        tecnológicos.
+                    </p>
+                    <h3 class="skills-title" data-text-id="habilidadesTecnicas">Habilidades Técnicas</h3>
+                    <div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">JavaScript</span>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">React</span>
+                                <span class="skill-percentage">50%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 50%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Java</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">SQL</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">C++</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name" data-text-id="htmlCss">HTML y CSS</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="education-section">
+        <div class="section-container">
+            <div class="education-grid">
+                <div>
+                    <h2 class="education-title" data-text-id="educacion">Educación</h2>
+                    <div class="education-card">
+                        <div class="card-header">
+                            <div class="card-logo">
+                                <img src="icons/logoupsin.png" alt="UPSIN Logo">
+                            </div>
+                            <div class="card-content">
+                                <h3>Universidad Politécnica de Sinaloa</h3>
+                                <p class="card-position" data-text-id="puestoEducacion">Ing. Tecnologías de la
+                                    Información</p>
+                                <p class="card-date">2023-2026</p>
+                                <p class="card-description" data-text-id="descEducacion">Especialización en desarrollo
+                                    de software y sistema de
+                                    información</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="education-title" data-text-id="experiencia">Experiencia</h2>
+                    <div class="education-card">
+                        <div class="card-header">
+                            <div class="card-logo">
+                                <img src="icons/logovolks.png" alt="Popul-Auto Logo">
+                            </div>
+                            <div class="card-content">
+                                <h3>Agencia Popul-Auto</h3>
+                                <p class="card-position" data-text-id="puestoExperiencia">Especialista en Redes</p>
+                                <p class="card-date">2024 - 2025</p>
+                                <p class="card-description" data-text-id="descExperiencia">Gestión y mantenimiento de la
+                                    infraestructura de red
+                                    corporativa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section" id="proyectos">
+        <div class="section-container">
+            <h2 class="section-title" style="color: #23468C;" data-text-id="proyectosTitulo">Proyectos</h2>
+            <p class="section-subtitle" data-text-id="hablemosProyecto">Proyectos destacados y trabajos recientes</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <figure>
+                        <picture>
+                            <source media="(max-width: 768px)" srcset="images/farmacode_telefono.png">
+                            <source media="(max-width: 1200px)" srcset="images/farmacode_tablet.png">
+                            <img src="images/farmacode_tablet.png" alt="Farmacode">
+                        </picture>
+                    </figure>
+                    <div class="project-content">
+                        <h3 class="project-title">FarmaCode</h3>
+                        <p class="project-description" data-text-id="descFarmaCode">
+                            Aplicación completa para la gestión de usuarios, compras, ventas y proveedores en farmacias,
+                            que incluye funcionalidades avanzadas como seguimiento de inventario, generación de reportes
+                            en tiempo real y una interfaz intuitiva que mejora la experiencia del usuario, facilitando
+                            la administración y optimización de procesos en el negocio.
+                        </p>
+                        <p class="tech-label">Tecnologías:</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">TypeScript</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://github.com/JesusACastillo/FarmaCode" class="btn-project" target="_blank"
+                                rel="noopener noreferrer">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M10 6H6C4.89543 6 4 6.89543 4 8V18C4 19.1046 4.89543 20 6 20H16C17.1046 20 18 19.1046 18 18V14M14 4H20M20 4V10M20 4L10 14" />
+                                </svg>
+                                <span data-text-id="verProyecto">Ver Proyecto</span>
+                            </a>
+                            <div class="div-icon">
+                                <img src="icons/githublogonegro.png" alt="GitHub">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/optiruta.png" alt="OptiRuta" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">OptiRuta</h3>
+                        <p class="project-description" data-text-id="descOptiRuta">
+                            Aplicación móvil para la gestión y optimización de rutas de transporte público, diseñada
+                            específicamente para estudiantes, con interfaz intuitiva y funcionalidades en tiempo real.
+                        </p>
+                        <p class="tech-label" data-text-id="tecnologias">Tecnologías:</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Figma</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://www.figma.com/design/kKj13GrPX3v2gLKndEcdAR/OptiRuta" class="btn-project"
+                                target="_blank" rel="noopener noreferrer">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M10 6H6C4.89543 6 4 6.89543 4 8V18C4 19.1046 4.89543 20 6 20H16C17.1046 20 18 19.1046 18 18V14M14 4H20M20 4V10M20 4L10 14" />
+                                </svg>
+                                <span data-text-id="verProyecto">Ver Proyecto</span>
+                            </a>
+                            <div class="div-icon">
+                                <img src="icons/logofigma.png" alt="Figma">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/upsin.png" alt="UPSIN" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title" data-text-id="tituloCisco">Simulación y Optimización de la Red UPSIN
+                        </h3>
+                        <p class="project-description" data-text-id="descCisco">
+                            Aplicación de simulación en Cisco Packet Tracer que representa la infraestructura de red de
+                            la Universidad Politécnica de Sinaloa.
+                        </p>
+                        <p class="tech-label" data-text-id="tecnologias">Tecnologías:</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">DHCP</span>
+                            <span class="tech-tag">VoIP</span>
+                            <span class="tech-tag">OSPF</span>
+                            <span class="tech-tag">WEB</span>
+                            <span class="tech-tag">IOT</span>
+                            <span class="tech-tag">POP3</span>
+                            <span class="tech-tag">SMTP</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="./downloads/ProyectoV5.pkt" download class="btn-project">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M10 6H6C4.89543 6 4 6.89543 4 8V18C4 19.1046 4.89543 20 6 20H16C17.1046 20 18 19.1046 18 18V14M14 4H20M20 4V10M20 4L10 14" />
+                                </svg>
+                                <span data-text-id="verProyecto">Ver Proyecto</span>
+                            </a>
+                            <div class="div-icon">
+                                <img src="icons/logopacket.png" alt="Packet Tracer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/responsivo.png" alt="Pagina Web" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title" data-text-id="tituloWeb">Plan de Asignatura</h3>
+                        <p class="project-description" data-text-id="descWeb">
+                            Diseño de un plan de asignatura para la materia de Desarrollo Web, que abarca los
+                            fundamentos y mejores prácticas en la creación de sitios web atractivos y funcionales.
+                        </p>
+                        <p class="tech-label" data-text-id="tecnologias">Tecnologías:</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://planasignaturaresponsivo.netlify.app" class="btn-project" target="_blank"
+                                rel="noopener noreferrer">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M10 6H6C4.89543 6 4 6.89543 4 8V18C4 19.1046 4.89543 20 6 20H16C17.1046 20 18 19.1046 18 18V14M14 4H20M20 4V10M20 4L10 14" />
+                                </svg>
+                                <span data-text-id="verProyecto">Ver Proyecto</span>
+                            </a>
+                            <div class="div-icon">
+                                <img src="icons/logoweb.png" alt="Web">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="certificates-section" id="certificados">
+        <div class="section-container">
+            <h2 class="section-title" style="color: #23468C;" data-text-id="certificadosTitulo">Certificados</h2>
+            <p class="section-subtitle" data-text-id="subtitulocertificados">Certificados y logros profesionales</p>
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <img src="images/certificadoit.png" alt="IT Essentials" class="certificate-image">
+                    <h3 class="certificate-title" data-text-id="certIT">IT Essentials</h3>
+                    <div class="certificate-info">
+                        <div class="certificate-issuer">
+                            <img src="icons/logoempresa.png" alt="Office">
+                            <span data-text-id="emisorIT">Emisor: <strong>Cisco</strong></span>
+                        </div>
+                        <div class="certificate-date">
+                            <img src="icons/logofecha.png" alt="Date">
+                            <span data-text-id="fechaIT">Fecha: <strong>2024</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certificate-card">
+                    <img src="images/certificadoredes.png" alt="CCNA" class="certificate-image">
+                    <h3 class="certificate-title" data-text-id="certCCNA">CCNA: Introduction to Networks</h3>
+                    <div class="certificate-info">
+                        <div class="certificate-issuer">
+                            <img src="icons/logoempresa.png" alt="Office">
+                            <span data-text-id="emisorCCNA">Emisor: <strong>Cisco</strong></span>
+                        </div>
+                        <div class="certificate-date">
+                            <img src="icons/logofecha.png" alt="Date">
+                            <span data-text-id="fechaCCNA">Fecha: <strong>2024</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certificate-card">
+                    <img src="images/certificadobd.png" alt="BD" class="certificate-image">
+                    <h3 class="certificate-title">Administrador de bases de datos</h3>
+                    <div class="certificate-info">
+                        <div class="certificate-issuer">
+                            <img src="icons/logoempresa.png" alt="Office">
+                            <span data-text-id="emisorSlim">Emisor: <strong>Fundacion Carlos Slim</strong></span>
+                        </div>
+                        <div class="certificate-date">
+                            <img src="icons/logofecha.png" alt="Date">
+                            <span data-text-id="fechaSlim">Fecha: <strong>2025</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certificate-card">
+                    <img src="images/certificadopoo.png" alt="POO" class="certificate-image">
+                    <h3 class="certificate-title">Programador (POO)</h3>
+                    <div class="certificate-info">
+                        <div class="certificate-issuer">
+                            <img src="icons/logoempresa.png" alt="Office">
+                            <span data-text-id="emisorSlim">Emisor: <strong>Fundacion Carlos Slim</strong></span>
+                        </div>
+                        <div class="certificate-date">
+                            <img src="icons/logofecha.png" alt="Date">
+                            <span data-text-id="fechaSlim">Fecha: <strong>2025</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3 data-text-id="portafolioFooter">Portafolio</h3>
+                    <p data-text-id="descripcionFooter">Portafolio de Jesús Antonio Hdez Castillo</p>
+                </div>
+                <div class="footer-column">
+                    <h3 data-text-id="enlacesRapidos">Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><button onclick="scrollToSection('inicio')" data-text-id="inicio">Inicio</button></li>
+                        <li><button onclick="scrollToSection('acerca')" data-text-id="acercaDe">Acerca de</button></li>
+                        <li><button onclick="scrollToSection('proyectos')" data-text-id="proyectos">Proyectos</button>
+                        </li>
+                        <li><button onclick="scrollToSection('certificados')"
+                                data-text-id="certificados">Certificados</button></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <div class="contact-item">
+                        <img src="icons/logoubicacion.png" alt="Ubicación">
+                        <span class="contact-text" data-text-id="direccion">C. Leandro Valle #819, Mazatlán,
+                            Sinaloa</span>
+                    </div>
+                    <div class="contact-item">
+                        <img src="icons/logollamar.png" alt="Teléfono">
+                        <span class="contact-text" data-text-id="telefono">Tel: (669) 932 8266</span>
+                    </div>
+                    <div class="contact-item">
+                        <img src="icons/logoemail.png" alt="Email">
+                        <span class="contact-text" data-text-id="email">Email: jesus200546656@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="social-links">
+                <a class="social-btn" href="https://github.com/JesusACastillo" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="icons/logogithubblanco.png" alt="GitHub">
+                </a>
+                <a class="social-btn" href="https://www.linkedin.com/in/jesus-antonio-4061b438a" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="icons/logolinkedin.png" alt="LinkedIn">
+                </a>
+            </div>
+            <div class="footer-divider">
+                © 2025 Castillo - Todos los derechos reservados
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            nav.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const nav = document.getElementById('mainNav');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Close mobile menu if open
+            if (nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                menuBtn.classList.remove('active');
+            }
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (event) {
+            const nav = document.getElementById('mainNav');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const header = document.querySelector('header');
+
+            if (!header.contains(event.target) && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                menuBtn.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>
