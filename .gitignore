@@ -1,0 +1,18 @@
+# Operating systems
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors
+.idea/
+.vscode/
+*.swp
+
+# Local tooling and logs
+.cache/
+*.log
+
+# Local environment files
+.env
+.env.*
+!.env.example
